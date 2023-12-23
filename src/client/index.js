@@ -8,10 +8,3 @@ const root = createRoot(document.getElementById('app'))
 root.render(<App/>)
 
 
-
-// var stocks = new Stocks('N9FZFLH17H66OBFL')
-// var result = await stocks.timeSeries(var options = {
-//   symbol: 'AAPL',
-//   interval: 'weekly',
-//   amount: 52
-// };);
