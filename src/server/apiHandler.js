@@ -8,7 +8,6 @@ apiHandler.getStocks = (req, res, next) => {
   fetch(stockApiUrl)
   .then(data => data.json())
   .then(data => {
-    console.log(data)
     res.locals.getStocks = data;
     next()
   })
