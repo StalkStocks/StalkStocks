@@ -3,6 +3,12 @@ const app = express();
 const port = 3000;
 const path = require('path')
 const apiHandler = require('./apiHandler.js')
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://student:ilovetesting@database-assessment.6vall.mongodb.net/week-4-assessment?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
