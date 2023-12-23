@@ -7,12 +7,10 @@ const apiHandler = require('./apiHandler.js')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use('/', express.static(path.resolve(__dirname, '../../dist')))
 
 app.get('/api', apiHandler.getStocks, (req, res) => {
-  res.sendStatus(200)
+  res.status(200).json(res.locals.getStocks);
 })
 
 app.use((req, res) => res.status(404).send('Not Found'));
