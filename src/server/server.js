@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api', apiHandler.getStocks, (req, res) => {
-  res.sendStatus(200)
+  res.status(200).json(res.locals.getStocks);
 })
 
 app.use((req, res) => res.status(404).send('Not Found'));

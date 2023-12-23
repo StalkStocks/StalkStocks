@@ -9,6 +9,7 @@ apiHandler.getStocks = (req, res, next) => {
   .then(data => data.json())
   .then(data => {
     console.log(data)
+    res.locals.getStocks = data;
     next()
   })
   .catch(err => next({log: `Error: caught error in getStock middleware: ${err}`, message: 'Couldn\'t get stock information'}))
