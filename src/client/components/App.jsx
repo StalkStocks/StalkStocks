@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.scss';
 import FooterButtons from './footerButtons.js';
+import Charter from './Chart.jsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             </button>
           </form>
         </div>
+        <Charter/>
       </div>
       <FooterButtons />
     </div>
