@@ -1,7 +1,7 @@
 import App from './components/App.jsx'
 import { createRoot } from 'react-dom/client'
 import React from 'react'
-import Stocks from 'stocks.js'
+
 
 
 
