@@ -1,6 +1,9 @@
 const express = require('express');
+require('dotenv').config();
 
-const stockApiUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=N9FZFLH17H66OBFL';
+const API_KEY = process.env.API_KEY;
+
+const stockApiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=${API_KEY}`;
 
 const apiHandler = {}
 
