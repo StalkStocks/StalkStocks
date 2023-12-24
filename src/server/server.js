@@ -4,8 +4,9 @@ const port = 3000;
 const path = require('path')
 const apiHandler = require('./apiHandler.js')
 const mongoose = require('mongoose');
+const UserController = require('./databaseControllers');
 
-mongoose.connect('mongodb+srv://student:ilovetesting@database-assessment.6vall.mongodb.net/week-4-assessment?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://mayson124:1IW3LRNAKFUnfIV4@stalkstocks.qefr3ka.mongodb.net/?retryWrites=true&w=majority');
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
@@ -18,6 +19,13 @@ app.use('/', express.static(path.resolve(__dirname, '../../dist')))
 app.get('/api', apiHandler.getStocks, (req, res) => {
   res.status(200).json(res.locals.getStocks);
 })
+
+const userRouter = express.Router();
+app.use('/user', userRouter);
+
+userRouter.post('/', UserController.createUser, (req, res) => res.status(200).json(res.locals.newUser));
+
+userRouter.get('/:username', UserController.getUser, (req, res) => res.status(200).json(res.locals.gotUser));
 
 app.use((req, res) => res.status(404).send('Not Found'));
 
