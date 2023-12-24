@@ -29,6 +29,18 @@ const UserController = {
         res.locals.gotUser = gotUser;
         return next();
     },
+   
+    async deleteUser(req, res, next) {
+        try {
+          const username = req.params.username;
+          const deleteUser = await User.findOneAndDelete({ username: username });
+          res.locals.deletedUser = deleteUser;
+          return next();
+        }
+        catch(err) {
+          return next('Error in userController.deleteUser: ' + JSON.stringify(err));
+        }
+      },
 }
 
 module.exports = UserController;

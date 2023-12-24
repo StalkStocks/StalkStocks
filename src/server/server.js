@@ -27,6 +27,8 @@ userRouter.post('/', UserController.createUser, (req, res) => res.status(200).js
 
 userRouter.get('/:username', UserController.getUser, (req, res) => res.status(200).json(res.locals.gotUser));
 
+userRouter.delete('/:username', UserController.deleteUser, (req, res) => res.status(200).json(res.locals.deletedUser));
+
 app.use((req, res) => res.status(404).send('Not Found'));
 
 app.use((err, req, res, next) => {
