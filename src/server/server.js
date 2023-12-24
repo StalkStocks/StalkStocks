@@ -10,7 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', express.static(path.resolve(__dirname, '../../dist')))
 
 app.get('/api', apiHandler.getStocks, (req, res) => {
-  console.log(res.locals.getStocks)
   res.status(200).json(res.locals.getStocks);
 })
 
