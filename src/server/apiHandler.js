@@ -3,11 +3,11 @@ require('dotenv').config();
 
 const API_KEY = process.env.API_KEY;
 
+// DEFAULT TEST CASE FOR IBM STOCK QUERY
 // const stockApiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=${API_KEY}`;
 
 const apiHandler = {}
 
-// TODO: successfully generage stockApiUrl DYNAMICALLY
 const generateStockApiUrl = (stockSymbol) => {
   return `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockSymbol}&apikey=${API_KEY}`;
 };

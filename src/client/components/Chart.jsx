@@ -7,7 +7,7 @@ function Charter() {
   useEffect(() => {
     (async function() {
 
-      generateChart();
+      generateChart('GOOG');
     // new Chart(document.querySelector('#graph'), cfg);
   })()}, [])
 

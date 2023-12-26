@@ -1,9 +1,10 @@
 import Chart from 'chart.js/auto'
 
 
-async function fetchDataFromAPI() {
+async function fetchDataFromAPI(stockToFetch) {
+    const fetchUrl = `http://localhost:3000/api/${stockToFetch}`
     try {
-      const response = await fetch('http://localhost:3000/api', {
+      const response = await fetch(fetchUrl, {
         mode: 'no-cors',
         method: 'get'
       });
@@ -20,8 +21,8 @@ async function fetchDataFromAPI() {
   }
   
   // Function to generate the chart using fetched data
-  async function generateChart() {
-    const rawData = await fetchDataFromAPI();
+  async function generateChart(chosenStock) {
+    const rawData = await fetchDataFromAPI(chosenStock);
   
     if (!rawData) {
       console.error('Failed to fetch data from the API.');
