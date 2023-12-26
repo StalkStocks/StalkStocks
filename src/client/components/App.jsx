@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import FooterButtons from './footerButtons.js';
 import Charter from './Chart.jsx'
+import SearchCenter from './SearchCenter.jsx'
 
 function App() {
   return (
@@ -10,14 +11,7 @@ function App() {
         <h1 className="app-title">StalkStocks</h1>
       </div>
       <div className="search-container">
-        <div className="search-center">
-          <form className="search-form">
-            <input type="text" className="search-box" />
-            <button type="submit" className="search-button">
-              Stalk
-            </button>
-          </form>
-        </div>
+        <SearchCenter />
         <Charter/>
       </div>
       <FooterButtons />
