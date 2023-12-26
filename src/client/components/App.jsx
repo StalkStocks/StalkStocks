@@ -11,9 +11,10 @@ function App() {
         <h1 className="app-title">StalkStocks</h1>
       </div>
       <div className="search-container">
-        <SearchCenter />
+        {/* <SearchCenter /> */}
         <Charter/>
       </div>
+      <SearchCenter />
       <FooterButtons />
     </div>
   );

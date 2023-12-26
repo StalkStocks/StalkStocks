@@ -13,7 +13,7 @@ function Charter() {
 
 
   return (
-    <div style={{width: '500px', height: '300px'}}>
+    <div className="chart">
       <canvas id="graph"></canvas>
     </div>
   )
