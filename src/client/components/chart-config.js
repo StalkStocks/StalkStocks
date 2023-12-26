@@ -65,7 +65,7 @@ async function fetchDataFromAPI() {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: false
           }
         }
       }
