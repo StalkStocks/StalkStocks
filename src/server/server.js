@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.resolve(__dirname, '../../dist')))
 
-app.get('/api', apiHandler.getStocks, (req, res) => {
+app.get('/api/:symbol', apiHandler.getStocks, (req, res) => {
   res.status(200).json(res.locals.getStocks);
 })
 
