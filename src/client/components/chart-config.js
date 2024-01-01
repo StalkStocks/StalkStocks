@@ -25,7 +25,7 @@ async function fetchDataFromAPI(stockToFetch) {
 
   // Function to generate the chart using fetched data
   async function generateChart(chosenStock) {
-    console.log('fetching stock: ', chosenStock)
+    // console.log('fetching stock: ', chosenStock)
     const rawData = await fetchDataFromAPI(chosenStock);
   
     if (!rawData) {
@@ -52,12 +52,22 @@ async function fetchDataFromAPI(stockToFetch) {
       {
         label: 'Close',
         data: timeSeriesData.map(entry => entry.close),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        backgroundColor: 'rgba(155, 155, 155, 0.5)'
+      },
+      // {
+      //   label: 'Volume',
+      //   data: timeSeriesData.map(entry => entry.volume),
+      //   backgroundColor: 'rgba(75, 192, 192, 0.5)'
+      // }
+      {
+        label: 'High',
+        data: timeSeriesData.map(entry => entry.high),
+        backgroundColor: 'rgba(34, 139, 34, 0.5)'
       },
       {
-        label: 'Volume',
-        data: timeSeriesData.map(entry => entry.volume),
-        backgroundColor: 'rgba(75, 192, 192, 0.5)'
+        label: 'Low',
+        data: timeSeriesData.map(entry => entry.low),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
       }
     ];
   
@@ -68,6 +78,12 @@ async function fetchDataFromAPI(stockToFetch) {
         datasets: datasets
       },
       options: {
+        plugins: {
+          title: {
+            display: true,
+            text: `Stock data for ${chosenStock}`
+          }
+        },
         scales: {
           y: {
             beginAtZero: false

@@ -17,7 +17,7 @@ apiHandler.getStocks = (req, res, next) => {
 
   
   const stockSymbol = req.params.symbol;
-  console.log('stock symbol is: ', stockSymbol)
+  // console.log('stock symbol is: ', stockSymbol)
   const stockApiUrl = generateStockApiUrl(`${stockSymbol}`);
 
   fetch(stockApiUrl)
