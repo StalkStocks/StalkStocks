@@ -22,6 +22,7 @@ async function fetchDataFromAPI(stockToFetch) {
   
   // Function to generate the chart using fetched data
   async function generateChart(chosenStock) {
+    console.log('fetching stock: ', chosenStock)
     const rawData = await fetchDataFromAPI(chosenStock);
   
     if (!rawData) {

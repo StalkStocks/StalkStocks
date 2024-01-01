@@ -5,6 +5,10 @@ import Charter from './Chart.jsx'
 import SearchCenter from './SearchCenter.jsx'
 
 function App() {
+
+  // const [stockTicker, setStockTicker] = useState('');
+
+  
   return (
     <div>
       <div className="container">
@@ -12,7 +16,7 @@ function App() {
       </div>
       <div className="search-container">
         {/* <SearchCenter /> */}
-        <Charter/>
+        <Charter stockTicker='IBM' />
       </div>
       <SearchCenter />
       <FooterButtons />
