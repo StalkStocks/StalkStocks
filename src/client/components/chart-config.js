@@ -20,6 +20,9 @@ async function fetchDataFromAPI(stockToFetch) {
     }
   }
   
+
+  let myChart = null;
+
   // Function to generate the chart using fetched data
   async function generateChart(chosenStock) {
     console.log('fetching stock: ', chosenStock)
@@ -76,7 +79,12 @@ async function fetchDataFromAPI(stockToFetch) {
     // Render the chart using Chart.js
     // const ctx = document.getElementById('graph')
     // new Chart(ctx, cfg);
-    new Chart(document.querySelector('#graph'), cfg);
+    if (myChart !== null) {
+      myChart.destroy();
+    }
+
+    myChart = new Chart(document.querySelector('#graph'), cfg);
+    return myChart;
   }
   
   export default generateChart

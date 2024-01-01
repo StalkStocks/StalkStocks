@@ -9,7 +9,7 @@ function Charter({ stockTicker }) {
 
       generateChart(stockTicker);
     // new Chart(document.querySelector('#graph'), cfg);
-  })()}, [])
+  })()}, [stockTicker])
 
 
   return (
