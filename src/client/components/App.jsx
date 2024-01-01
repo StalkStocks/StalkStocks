@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.scss';
 import FooterButtons from './footerButtons.js';
 import Charter from './Chart.jsx'
@@ -6,8 +6,12 @@ import SearchCenter from './SearchCenter.jsx'
 
 function App() {
 
-  // const [stockTicker, setStockTicker] = useState('');
+  const [stockTicker, setStockTicker] = useState('SPY');
 
+  const handleSearch = (newTicker) => {
+    console.log('stock search changed to: ', newTicker);
+    setStockTicker(newTicker);
+  }
   
   return (
     <div>
@@ -16,9 +20,9 @@ function App() {
       </div>
       <div className="search-container">
         {/* <SearchCenter /> */}
-        <Charter stockTicker='IBM' />
+        <Charter stockTicker={ stockTicker } />
       </div>
-      <SearchCenter />
+      <SearchCenter onSearch={ handleSearch }/>
       <FooterButtons />
     </div>
   );
