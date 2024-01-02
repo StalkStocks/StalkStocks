@@ -9,7 +9,7 @@ function App() {
   const [stockTicker, setStockTicker] = useState('SPY');
 
   const handleSearch = (newTicker) => {
-    console.log('stock search changed to: ', newTicker);
+    console.log('Stock search changed to: ', newTicker);
     setStockTicker(newTicker);
   }
   

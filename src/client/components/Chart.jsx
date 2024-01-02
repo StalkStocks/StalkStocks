@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import Chart from 'chart.js/auto'
 import generateChart from './chart-config.js'
 
 function Charter({ stockTicker }) {
@@ -8,7 +7,6 @@ function Charter({ stockTicker }) {
     (async function() {
 
       generateChart(stockTicker);
-    // new Chart(document.querySelector('#graph'), cfg);
   })()}, [stockTicker])
 
 
