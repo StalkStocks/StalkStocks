@@ -24,3 +24,4 @@ function App() {
 }
 
 export default App;
+//handle onclick function, within it set usestate using setstate to whatever they passed in to the search bar.

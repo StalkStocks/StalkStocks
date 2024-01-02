@@ -2,10 +2,12 @@ body {
   background-color: #e9edc9;
   color: #757b62;
   font-size: 16px;
+  font-family: Raleway Dots;
 }
 
 .container {
   text-align: center;
+  font-family: Rubik Doodle Shadow;
 }
 
 .app-title {
@@ -54,10 +56,12 @@ body {
 }
 
 .footer-button {
-  color: #757b62;
+  color: #000000;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-family: Raleway Dots;
+  font-size: 16px;
 }
 
 .footer-button:hover {
@@ -73,6 +77,7 @@ body {
   border-radius: 50px;
   cursor: pointer;
   margin-left: 10px;
+  font-family: Raleway Dots;
 }
 
 .search-button:hover {
