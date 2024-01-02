@@ -3,15 +3,34 @@ const app = express();
 const port = 3000;
 const path = require('path')
 const apiHandler = require('./apiHandler.js')
+const mongoose = require('mongoose');
+const UserController = require('./databaseControllers');
+require('dotenv').config();
+
+const MONGODB_URL = process.env.MONGODB_URL
+
+mongoose.connect(MONGODB_URL);
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.resolve(__dirname, '../../dist')))
 
-app.get('/api', apiHandler.getStocks, (req, res) => {
+app.get('/api/:symbol', apiHandler.getStocks, (req, res) => {
   res.status(200).json(res.locals.getStocks);
 })
+
+const userRouter = express.Router();
+app.use('/user', userRouter);
+
+userRouter.post('/', UserController.createUser, (req, res) => res.status(200).json(res.locals.newUser));
+
+userRouter.get('/:username', UserController.getUser, (req, res) => res.status(200).json(res.locals.gotUser));
+
+userRouter.delete('/:username', UserController.deleteUser, (req, res) => res.status(200).json(res.locals.deletedUser));
 
 app.use((req, res) => res.status(404).send('Not Found'));
 

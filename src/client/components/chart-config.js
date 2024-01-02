@@ -1,9 +1,10 @@
 import Chart from 'chart.js/auto'
 
 
-async function fetchDataFromAPI() {
+async function fetchDataFromAPI(stockToFetch) {
+    const fetchUrl = `http://localhost:3000/api/${stockToFetch}`
     try {
-      const response = await fetch('http://localhost:3000/api', {
+      const response = await fetch(fetchUrl, {
         mode: 'no-cors',
         method: 'get'
       });
@@ -19,9 +20,12 @@ async function fetchDataFromAPI() {
     }
   }
   
+
+  let myChart = null;
+
   // Function to generate the chart using fetched data
-  async function generateChart() {
-    const rawData = await fetchDataFromAPI();
+  async function generateChart(chosenStock) {
+    const rawData = await fetchDataFromAPI(chosenStock);
   
     if (!rawData) {
       console.error('Failed to fetch data from the API.');
@@ -47,12 +51,17 @@ async function fetchDataFromAPI() {
       {
         label: 'Close',
         data: timeSeriesData.map(entry => entry.close),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        backgroundColor: 'rgba(155, 155, 155, 0.5)'
       },
       {
-        label: 'Volume',
-        data: timeSeriesData.map(entry => entry.volume),
-        backgroundColor: 'rgba(75, 192, 192, 0.5)'
+        label: 'High',
+        data: timeSeriesData.map(entry => entry.high),
+        backgroundColor: 'rgba(34, 139, 34, 0.5)'
+      },
+      {
+        label: 'Low',
+        data: timeSeriesData.map(entry => entry.low),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
       }
     ];
   
@@ -63,18 +72,27 @@ async function fetchDataFromAPI() {
         datasets: datasets
       },
       options: {
+        plugins: {
+          title: {
+            display: true,
+            text: `Stock data for ${chosenStock}`
+          }
+        },
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: false
           }
         }
       }
     };
   
     // Render the chart using Chart.js
-    // const ctx = document.getElementById('graph')
-    // new Chart(ctx, cfg);
-    new Chart(document.querySelector('#graph'), cfg);
+    if (myChart !== null) {
+      myChart.destroy();
+    }
+
+    myChart = new Chart(document.querySelector('#graph'), cfg);
+    return myChart;
   }
   
   export default generateChart
