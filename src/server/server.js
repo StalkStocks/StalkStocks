@@ -5,8 +5,11 @@ const path = require('path')
 const apiHandler = require('./apiHandler.js')
 const mongoose = require('mongoose');
 const UserController = require('./databaseControllers');
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://mayson124:1IW3LRNAKFUnfIV4@stalkstocks.qefr3ka.mongodb.net/?retryWrites=true&w=majority');
+const MONGODB_URL = process.env.MONGODB_URL
+
+mongoose.connect(MONGODB_URL);
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
