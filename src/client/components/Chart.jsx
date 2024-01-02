@@ -1,40 +1,19 @@
 import React, {useEffect} from 'react'
 import Chart from 'chart.js/auto'
+import generateChart from './chart-config.js'
 
-function Charter() {
+function Charter({ stockTicker }) {
 
   useEffect(() => {
     (async function() {
-    const data = [
-      10,
-      20,
-      15,
-      25,
-      22,
-      30,
-      28,
-    ];
-    const labels = []
-    for (let i = 0; i < data.length; i++) {
-      labels.push(i)
-    }
-    new Chart(
-      document.querySelector('#graph'),
-      {
-        type: 'line',
-        data: {
-          datasets: [{
-            data: data,
-          }],
-          labels: labels
-        }
-      }
-    );
-  })()}, [])
+
+      generateChart(stockTicker);
+    // new Chart(document.querySelector('#graph'), cfg);
+  })()}, [stockTicker])
 
 
   return (
-    <div style={{width: '500px', height: '300px'}}>
+    <div className="chart">
       <canvas id="graph"></canvas>
     </div>
   )
