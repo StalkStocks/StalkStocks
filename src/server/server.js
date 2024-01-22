@@ -1,44 +1,50 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 3000;
-const path = require('path')
-const apiHandler = require('./apiHandler.js')
-const mongoose = require('mongoose');
-const UserController = require('./databaseControllers');
-require('dotenv').config();
+const path = require("path");
+const apiHandler = require("./apiHandler.js");
+const mongoose = require("mongoose");
+const UserController = require("./databaseControllers");
+require("dotenv").config();
 
-const MONGODB_URL = process.env.MONGODB_URL
+const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(MONGODB_URL);
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
+mongoose.connection.once("open", () => {
+  console.log("Connected to Database");
 });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', express.static(path.resolve(__dirname, '../../dist')))
+app.use("/", express.static(path.resolve(__dirname, "../../dist")));
 
-app.get('/api/:symbol', apiHandler.getStocks, (req, res) => {
+app.get("/api/:symbol", apiHandler.getStocks, (req, res) => {
   res.status(200).json(res.locals.getStocks);
-})
+});
 
 const userRouter = express.Router();
-app.use('/user', userRouter);
+app.use("/user", userRouter);
 
-userRouter.post('/', UserController.createUser, (req, res) => res.status(200).json(res.locals.newUser));
+userRouter.post("/", UserController.createUser, (req, res) =>
+  res.status(200).json(res.locals.newUser)
+);
 
-userRouter.get('/:username', UserController.getUser, (req, res) => res.status(200).json(res.locals.gotUser));
+userRouter.get("/:username", UserController.getUser, (req, res) =>
+  res.status(200).json(res.locals.gotUser)
+);
 
-userRouter.delete('/:username', UserController.deleteUser, (req, res) => res.status(200).json(res.locals.deletedUser));
+userRouter.delete("/:username", UserController.deleteUser, (req, res) =>
+  res.status(200).json(res.locals.deletedUser)
+);
 
-app.use((req, res) => res.status(404).send('Not Found'));
+app.use((req, res) => res.status(404).send("Not Found"));
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
+    log: "Express error handler caught unknown middleware error",
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: "An error occurred" },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
